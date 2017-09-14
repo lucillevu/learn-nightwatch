@@ -18,19 +18,19 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
       "webdriver.chrome.driver" : BINPATH + "chromedriver" // also downloaded by selenium-download
     }
   },
-  "test_workers" : {"enabled" : true, "workers" : "auto"}, // perform tests in parallel where possible
+  "test_workers" : {"enabled" : false, "workers" : "1"}, // perform tests in parallel where possible
   "test_settings": {
     "default": {
-      "launch_url": "http://ondemand.saucelabs.com:80", // we're testing a local site on Saucelabs
+      "launch_url": "", // we're testing a local site on Saucelabs
       "selenium_port": 80,
-      "selenium_host": "ondemand.saucelabs.com",
+      "selenium_host": "hub.browserstack.com",
       "silent": true,
       "screenshots": {
         "enabled": true, // save screenshots to this directory (excluded by .gitignore)
         "path": SCREENSHOT_PATH
       },
-      "username" : process.env.SAUCE_USERNAME,     // if you want to use Saucelabs remember to
-      "access_key" : process.env.SAUCE_ACCESS_KEY, // export your environment variables (see readme)
+      "username" : process.env.BROWSERTACK_USER,     // if you want to use Saucelabs remember to
+      "access_key" : process.env.BROWSERTACK_KEY, // export your environment variables (see readme)
       "globals": {
         "waitForConditionTimeout": 10000    // wait for content on the page before continuing
       },

@@ -5,4 +5,4 @@ before_script:
 node_js:
     - "6.0"
 script:
-  - npm run test:unit; npm run test:e2e
+  - npm run test

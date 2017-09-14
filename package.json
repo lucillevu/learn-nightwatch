@@ -8,7 +8,7 @@
   },
   "scripts": {
     "postinstall": "node nightwatch.conf.js",
-    "test": "./node_modules/.bin/nightwatch --env local",
+    "test": "./node_modules/.bin/nightwatch --env chrome",
     "ie": "./node_modules/.bin/nightwatch -e ie11",
     "sauce": "./node_modules/.bin/nightwatch -e chrome,ie11,android_s4_emulator,iphone_6_simulator",
     "upload": "node test/e2e/upload_screenshots_to_s3.js",
@@ -31,8 +31,6 @@
     "selenium-download": "^2.0.7"
   },
   "devDependencies": {
-    "aws-sdk": "^2.7.13",
-    "env2": "^2.1.1",
     "mime-types": "^2.1.13",
     "nodemon": "^1.11.0"
   },

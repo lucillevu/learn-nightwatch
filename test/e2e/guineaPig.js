@@ -2,14 +2,7 @@ var config = require('../../nightwatch.conf.js');
 
 module.exports = { // addapted from: https://git.io/vodU0
   '@tags': ['guineaPig'],
-   before: function (browser, done) {
-  	server = require('../server')(done) // done is a callback that executes when the server is started
-  },
-
-  after: function () {
-  	server.close()
-  },
-
+  
   'Guinea Pig Assert Title': function(browser) {
     browser
       .url('https://saucelabs.com/test/guinea-pig')

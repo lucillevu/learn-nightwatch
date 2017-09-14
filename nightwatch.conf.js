@@ -1,4 +1,3 @@
-require('env2')('.env'); // optionally store your environment variables in .env
 const PKG = require('./package.json'); // so we can get the version of the project
 const BINPATH = './node_modules/nightwatch/bin/'; // change if required.
 const SCREENSHOT_PATH = "./node_modules/nightwatch/screenshots/" + PKG.version + "/";
@@ -18,22 +17,26 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
       "webdriver.chrome.driver" : BINPATH + "chromedriver" // also downloaded by selenium-download
     }
   },
-  "test_workers" : {"enabled" : true, "workers" : "auto"}, // perform tests in parallel where possible
+  "test_workers" : {"enabled" : false, "workers" : "1"}, // perform tests in parallel where possible
   "test_settings": {
     "default": {
-      "launch_url": "http://localhost", // we're testing a Public or "staging" site on Saucelabs
+      "launch_url": "", // we're testing a local site on Saucelabs
       "selenium_port": 80,
-      "selenium_host": "ondemand.saucelabs.com",
+      "selenium_host": "hub.browserstack.com",
       "silent": true,
       "screenshots": {
         "enabled": true, // save screenshots to this directory (excluded by .gitignore)
         "path": SCREENSHOT_PATH
       },
-      "username" : "${SAUCE_USERNAME}",     // if you want to use Saucelabs remember to
-      "access_key" : "${SAUCE_ACCESS_KEY}", // export your environment variables (see readme)
+      "username" : process.env.BROWSERTACK_USER,     // if you want to use Saucelabs remember to
+      "access_key" : process.env.BROWSERTACK_KEY, // export your environment variables (see readme)
       "globals": {
         "waitForConditionTimeout": 10000    // wait for content on the page before continuing
-      }
+      },
+      "desiredCapabilities": {
+				"tunnel-identifier": process.env.TRAVIS_JOB_NUMBER, // needed for sauce-connect, i.e for testing localhost on saucelabs
+			  build: `build-${process.env.TRAVIS_JOB_NUMBER}` // needed for sauce-connect
+			}
     },
     "local": {
       "launch_url": "http://localhost",

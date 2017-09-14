@@ -4,3 +4,8 @@ before_script:
   - sleep 2
 node_js:
     - "6.0"
+addons:
+  browserstack:
+    username: "Your BrowserStack username"
+    access_key:
+      secure: "The secure string output of `travis encrypt`"

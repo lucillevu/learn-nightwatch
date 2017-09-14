@@ -3,6 +3,14 @@ var utils = require('../utils');
 
 module.exports = {
   '@tags': ['sampletest'],
+   before: function (browser, done) {
+  	server = require('../server')(done) // done is a callback that executes when the server is started
+  },
+
+  after: function () {
+  	server.close()
+  },
+
   'Open the website': function (browser) {
     utils(browser).goToSite();
   },
